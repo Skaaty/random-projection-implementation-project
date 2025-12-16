@@ -8,7 +8,6 @@ and expected behavior of dense random matrices.
 import numpy as np
 from random_projection_implementation_project.random_projection import RandomProjection
 
-
 def test_dense_projection_shape():
     """
     Test that the dense projection matrix has the expected shape.

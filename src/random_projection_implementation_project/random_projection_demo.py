@@ -36,7 +36,9 @@ if len(n_components_list) == 1:
     axes = np.expand_dims(axes, axis=0)
 
 for row_idx, n_components in enumerate(n_components_list):
+    
     custom_rp = RandomProjection(n_components=n_components, random_state=42)
+    
     X_custom = custom_rp.fit_transform(X)
 
     sk_rp = GaussianRandomProjection(n_components=n_components, random_state=42)
@@ -76,23 +78,9 @@ for row_idx, n_components in enumerate(n_components_list):
 plt.tight_layout()
 plt.show()
 
-custom_rp_2d = RandomProjection(n_components=2, random_state=42)
-X_custom_2d = custom_rp_2d.fit_transform(X)
-sk_rp_2d = GaussianRandomProjection(n_components=2, random_state=42)
-X_sklearn_2d = sk_rp_2d.fit_transform(X)
-
 plt.figure(figsize=(7,5))
-plt.scatter(X_custom_2d[:,0], X_custom_2d[:,1], s=10, alpha=0.6, label="Custom RP")
-plt.scatter(X_sklearn_2d[:,0], X_sklearn_2d[:,1], s=10, alpha=0.6, label="Sklearn RP")
-plt.title("2D Projection Scatter (n_components=2)")
-plt.xlabel("Component 1")
-plt.ylabel("Component 2")
-plt.legend()
-plt.show()
-
-plt.figure(figsize=(7,5))
-plt.plot(n_components_list, custom_distortions, marker='o', label="Custom RP")
-plt.plot(n_components_list, sklearn_distortions, marker='s', label="Sklearn RP")
+plt.plot(n_components_list, custom_distortions, marker='o', label="Sklearn RP")
+plt.plot(n_components_list, sklearn_distortions, marker='s', label="Custom RP")
 plt.xlabel("Number of components")
 plt.ylabel("Average distortion")
 plt.title("Distortion vs Number of Components")
